@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+:root {
+  --dark-primary: #242424;
+  --dark-secondary: #1a1a1a;
+  
+  --green-primary: #40c762;
+  --red-primary: #ed1543;
+  --blue-primary: #28a0dd;
+
+  --gray-100: #F9F9FC;
+  --gray-200: #e7e8f2;
+  --gray-300: #c6c7d0;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  box-sizing: border-box;
+  font-family: 'Open Sans', sans-serif;
+}
+
+body {
+  background: var(--gray-100);
+}
+
+header {
+  padding: 1rem;
+}
+
+#input-container {
+  max-width: 900px;
+  width: 100%;
+  margin: 1rem auto;
+  text-align: center;
+}
+
+#input-container > h1 {
+  font-size: 2.75rem;
+  color: var(--dark-primary);
+  line-height: 1.6;
+}
+
+#input-container > label {
+  border: var(--green-primary) 2px solid;
+  padding: 1rem;
+  width: 100%;
+  border-radius: 8px;
+  outline: none;
+}
+
+#input-container > label:not(#filter:focus) {
+  border: var(--dark-primary) 2px solid;
+  
+}
+
+#filter:focus {
+  outline: none;
+}
