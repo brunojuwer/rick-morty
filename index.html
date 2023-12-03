@@ -15,18 +15,18 @@
 
     <section id="input-container">
         <h1>API de Rick and Morty</h1>
-        <label for="filter">
+        <div class="filter-container">
             <input id="filter" type="text" placeholder="Pesquisar">
-            <img src="./assets/search.svg" alt="Lupa de pesquisa">
-        </label>
+            <img id="search-img" src="./assets/search.svg" alt="Lupa de pesquisa">
+        </div>
     </section>
     <main id="container">
-        <div class="card">
-            <img src="" alt="Character image">
-            <span class="character-info">
+        <article class="card">
+            <img class="character-image" src="https://rickandmortyapi.com/api/character/avatar/170.jpeg" alt="Character image">
+            <div class="character-info">
                 <div>
                     <h2>Rick</h2>
-                    <h3>Vivo - Humano</h3>
+                    <h3><span class="status"></span>Vivo - Humano</h3>
                 </div>
                 <div>
                     <p>Última localização conhecida:</p>
@@ -36,8 +36,10 @@
                     <p>Visto a última vez em:</p>
                     <h3>Nome do capitulo</h3>
                 </div>
-            </span>
-        </div>
+            </div>
+        </article>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
