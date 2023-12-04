@@ -26,40 +26,48 @@ function mountCard(image, name, status, species, location, episode) {
       </div>
       <div>
           <p>Visto a última vez em:</p>
-          <h3>${"episode"}</h3>
+          <h3>${episode}</h3>
       </div>
   </div>
 </article>
   `
 }
 
-// Fetch 
-async function fetchCharactersByPage(page = 1){
-  const response = await axios.get(`${URL}/?page=${page}`)
-  const characters = response.data.results;
-  // trtar erros
-  characters.forEach(({name, status, location, image, episode, species}) => {
-    container.innerHTML += mountCard(image, name, status, species, location, episode)
-  });
+async function fetchLastSeenEpisode(episodes) {
+  return (await axios.get(episodes[episodes.length - 1]));
 }
 
+// Fetch 
+async function fetchCharactersByPage(page = 1){
+  try {
+
+    const response = await axios.get(`${URL}/?page=${page}`)
+    const characters = response.data.results;
+    // trtar erros
+    characters.forEach( async ({name, status, location, image, episode, species}) => {
+      const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
+      container.innerHTML += mountCard(image, name, status, species, location, episodeName)
+    });
+  } catch(error) {
+    alert("Não foi possível buscar personagens")
+  }
+}
 fetchCharactersByPage()
 
-
 // Filter characters by name
-
 async function getCharactersByName(name) {
   return await axios.get(`${URL}/?name=${name}`);
 }
 
-filter.addEventListener('keyup', e => {
-  container.innerHTML = ""
-  getCharactersByName(e.target.value)
-    .then(res => {
-        res.data.results.forEach(({name, status, location, image, episode, species}) => {
-          container.innerHTML += mountCard(image, name, status, species, location, episode)
-        });
-    });
-  
-}) 
+filter.addEventListener('keyup', async e => {
+  container.innerHTML = '<div class="loader"></div>';
+  const filteredCharacters = (await getCharactersByName(e.target.value)).data.results
 
+  setTimeout(()=> {
+    container.innerHTML = '';
+    filteredCharacters.forEach( async ({name, status, location, image, episode, species}) => {
+      const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
+      container.innerHTML += mountCard(image, name, status, species, location, episodeName)
+    });
+  }, 300)
+}); 
