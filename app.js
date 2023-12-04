@@ -10,6 +10,15 @@ filter.addEventListener('blur', () => {
   filterContainer.classList.remove('focused')
 }) 
 
+function translateStatus(status) {
+  const translatedStatus = {
+    "Alive": "Vivo",
+    "Dead": "Morto",
+    "unknown": "Desconhecido"
+  }
+
+  return translatedStatus[status] || "Desconhecido";
+}
 
 function mountCard(image, name, status, species, location, episode) {
   return `
@@ -18,7 +27,7 @@ function mountCard(image, name, status, species, location, episode) {
   <div class="character-info">
       <div>
           <h2>${name}</h2>
-          <h3><span class="status ${status}"></span>${status} - ${species}</h3>
+          <h3><span class="status ${status}"></span>${translateStatus(status)} - ${species}</h3>
       </div>
       <div>
           <p>Última localização conhecida:</p>
