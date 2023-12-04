@@ -71,7 +71,6 @@ header {
 
 #container { 
   max-width: 1500px;
-  min-height: 1200px;
   width: 100%;
   margin: 2rem auto;
   border-radius: 10px;
