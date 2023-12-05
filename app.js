@@ -42,7 +42,7 @@ async function fetchCharactersByPage(page = 1){
 
     const response = await axios.get(`${URL}/?page=${page}`)
     const characters = response.data.results;
-    // trtar erros
+    
     characters.forEach( async ({name, status, location, image, episode, species}) => {
       const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
       container.innerHTML += mountCard(image, name, status, species, location, episodeName)
@@ -61,7 +61,7 @@ async function getCharactersByName(name) {
 filter.addEventListener('keyup', async e => {
   container.innerHTML = '<div class="loader"></div>';
   const filteredCharacters = (await getCharactersByName(e.target.value)).data.results
-
+// TODO: erro se não achou nome
   setTimeout(()=> {
     container.innerHTML = '';
     filteredCharacters.forEach( async ({name, status, location, image, episode, species}) => {
@@ -70,3 +70,6 @@ filter.addEventListener('keyup', async e => {
     });
   }, 300)
 }); 
+
+
+//TODO: ajustar cards com muita informação
