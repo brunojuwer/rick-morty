@@ -159,3 +159,35 @@ header {
     transform: rotate(360deg);
   }
 }
+
+footer img {
+  display: block;
+  width: 400px;
+  margin: 1rem auto;
+}
+
+footer div {
+  background-color: var(--dark-primary);
+  padding: 2rem;
+}
+
+#api-info {
+  display: flex;
+  justify-content: center;
+  gap: 1.75rem;
+}
+
+#api-info p {
+  color: var(--gray-300);
+  font-weight: 600;
+}
+
+#api-info p span {
+  color: var(--gray-100);
+}
+
+#developer-info {
+  text-align: center;
+  margin-top: 3rem;
+  color: var(--gray-300);
+}

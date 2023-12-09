@@ -23,5 +23,5 @@ function translateStatus(status) {
     "unknown": "Desconhecido"
   }
 
-  return translatedStatus[status] || "Desconhecido";
+  return translatedStatus[status] || "Não Definido";
 }
