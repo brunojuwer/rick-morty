@@ -64,6 +64,7 @@ async function fetchCharactersByPage(url){
       response.data.info.prev, 
       response.data.info.next
     );
+    console.log(pageContext);
     
     container.innerHTML = ""
     characters.forEach( async ({name, status, location, image, episode, species}) => {
@@ -71,6 +72,7 @@ async function fetchCharactersByPage(url){
       container.innerHTML += mountCard(image, name, status, species, location, episodeName);
     });
   } catch(error) {
+    console.log(error);
     alert("Não foi possível buscar personagens");
   }
 }
@@ -92,7 +94,6 @@ filter.addEventListener('keyup', async e => {
     });
   }, 300);
 }); 
-
 
 async function getDataCount(data) {
   const res = await apiDataLoader()
