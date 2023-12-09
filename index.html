@@ -21,6 +21,17 @@
         </section>
     </header>
     <main id="container"></main>
+    <section id="pages-container">
+        <button onclick="getPreviousPage()">Anterior</button>
+        <span id="pages">
+            <button>1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>4</button>
+            <button>5</button>
+        </span>
+        <button onclick="getNextPage()">Próxima</button>
+    </section>
     <footer>
         <img src="./assets/rick-and-morty.png" alt="Imagem de Rick e Morty">
         <div>
@@ -36,6 +47,8 @@
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <script src="translator.js"></script>
+    <script src="pageContext.js"></script>
     <script src="app.js"></script>
+    <script src="paginator.js"></script>
 </body>
 </html>

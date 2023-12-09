@@ -3,12 +3,13 @@ const charactersCountElement = document.querySelector("[data-count-characters]")
 const locationsCountElement = document.querySelector("[data-count-locations]");
 const episodesCountElement = document.querySelector("[data-count-episodes]");
 
-const charactersURL = "https://rickandmortyapi.com/api/character";
+const charactersURL = "https://rickandmortyapi.com/api/character/?page=1";
 const episodesURL = "https://rickandmortyapi.com/api/episode";
 const locationsURL = "https://rickandmortyapi.com/api/location";
 
+
 async function apiDataLoader(page = 1) {
-  const characters = await axios.get(`${charactersURL}/?page=${page}`)
+  const characters = await axios.get(`${charactersURL}`)
   const episodes = await axios.get(`${episodesURL}/?page=${page}`)
   const locations = await axios.get(`${locationsURL}/?page=${page}`)
 
@@ -53,12 +54,18 @@ async function fetchLastSeenEpisode(episodes) {
   return (await axios.get(episodes[episodes.length - 1]));
 }
 
-async function fetchCharactersByPage(page = 1){
+async function fetchCharactersByPage(url){
   try {
-
-    const response = await axios.get(`${charactersURL}/?page=${page}`);
+    const response = await axios.get(url);
     const characters = response.data.results;
+
+    changePageContextData(
+      response.data.info.pages, 
+      response.data.info.prev, 
+      response.data.info.next
+    );
     
+    container.innerHTML = ""
     characters.forEach( async ({name, status, location, image, episode, species}) => {
       const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
       container.innerHTML += mountCard(image, name, status, species, location, episodeName);
@@ -67,7 +74,7 @@ async function fetchCharactersByPage(page = 1){
     alert("Não foi possível buscar personagens");
   }
 }
-fetchCharactersByPage();
+fetchCharactersByPage(charactersURL);
 
 async function getCharactersByName(name) {
   return await axios.get(`${charactersURL}/?name=${name}`);
@@ -86,8 +93,6 @@ filter.addEventListener('keyup', async e => {
   }, 300);
 }); 
 
-
-//TODO: ajustar cards com muita informação
 
 async function getDataCount(data) {
   const res = await apiDataLoader()

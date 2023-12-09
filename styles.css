@@ -85,7 +85,8 @@ header {
 
 .card {
   max-height: 13rem;
-  max-width: 450px;
+  max-width: 500px;
+  width: 100%;
   border-radius: 10px;
   min-width: 450px;
   background-color: var(--dark-primary);
@@ -106,6 +107,7 @@ header {
 }
 
 .character-info h2 {
+  font-size: 1.25rem;
   color: var(--gray-100);
 }
 
@@ -158,6 +160,18 @@ header {
   100% {
     transform: rotate(360deg);
   }
+}
+
+#pages-container {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#pages-container button {
+  font-size: 1.25rem;
+  background: transparent;
+  cursor: pointer;
 }
 
 footer img {
