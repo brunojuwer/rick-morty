@@ -30,9 +30,13 @@ function changePageContextData(total, previous, next) {
 }
 
 function changePagesToShow() {
-  if(pageContext.totalPages > 5) {
+  if(pageContext.currentPage < 5){
+    pageContext.pagesToShow = [1, 2, 3, 4, 5, 6];
+  }
+  if(pageContext.totalPages > 5 && pageContext.currentPage % 5 === 0) {
     let page = pageContext.currentPage
-    while(pageContext.pagesToShow.length < 5) {
+    pageContext.pagesToShow = [];
+    while(pageContext.pagesToShow.length < 6) {
       pageContext.pagesToShow.push(page);
       page++
     }

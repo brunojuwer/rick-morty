@@ -64,6 +64,8 @@ async function fetchCharactersByPage(url){
       response.data.info.prev, 
       response.data.info.next
     );
+    changePagesToShow()
+    addNumberPages()
     console.log(pageContext);
     
     container.innerHTML = ""
@@ -79,7 +81,7 @@ async function fetchCharactersByPage(url){
 fetchCharactersByPage(charactersURL);
 
 async function getCharactersByName(name) {
-  return await axios.get(`${charactersURL}/?name=${name}`);
+  return await axios.get(`https://rickandmortyapi.com/api/character/?name=${name}`);
 }
 
 filter.addEventListener('keyup', async e => {

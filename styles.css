@@ -165,13 +165,22 @@ header {
 #pages-container {
   display: flex;
   justify-content: center;
-  gap: 1rem;
+  gap: 1.75rem;
 }
 
 #pages-container button {
   font-size: 1.25rem;
   background: transparent;
   cursor: pointer;
+}
+
+#pages {
+  display: flex;
+  gap: 0.875rem;
+}
+
+.current-page {
+  border-bottom: var(--blue-primary) solid 2px;
 }
 
 footer img {
