@@ -66,7 +66,6 @@ async function fetchCharactersByPage(url){
     );
     changePagesToShow()
     addNumberPages()
-    console.log(pageContext);
     
     container.innerHTML = ""
     characters.forEach( async ({name, status, location, image, episode, species}) => {

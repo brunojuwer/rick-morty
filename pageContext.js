@@ -1,5 +1,3 @@
-var adoad;
-
 let pageContext = {
   currentPage: 1,
   totalPages: 0,
@@ -30,15 +28,36 @@ function changePageContextData(total, previous, next) {
 }
 
 function changePagesToShow() {
-  if(pageContext.currentPage < 5){
-    pageContext.pagesToShow = [1, 2, 3, 4, 5, 6];
-  }
-  if(pageContext.totalPages > 5 && pageContext.currentPage % 5 === 0) {
-    let page = pageContext.currentPage
+  if(pageContext.currentPage <= pageContext.totalPages){
     pageContext.pagesToShow = [];
-    while(pageContext.pagesToShow.length < 6) {
-      pageContext.pagesToShow.push(page);
-      page++
+
+    let keepLooping = true 
+    let number = 1
+    while(keepLooping) {
+      let multiple = number * 10;
+      if(multiple > pageContext.currentPage) {
+        keepLooping = false;
+        number = multiple;
+        continue;
+      }
+      number++;
     }
+
+    while(pageContext.pagesToShow.length < 11 && pageContext.pagesToShow[pageContext.pagesToShow.length - 1] !== pageContext.totalPages) {
+      if(pageContext.pagesToShow.length) {
+        const num = pageContext.pagesToShow[0] - 1;
+          pageContext.pagesToShow.unshift(num);
+      } else {
+        pageContext.pagesToShow.push(number);
+      }
+    }
+    if(pageContext.pagesToShow.includes(0)) {
+      pageContext.pagesToShow.shift()
+    }
+    if(pageContext.pagesToShow.some(num => num > pageContext.totalPages)){
+      pageContext.pagesToShow = pageContext.pagesToShow
+        .filter(num => num <= pageContext.totalPages);
+    }
+    return;
   }
 }
