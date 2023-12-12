@@ -168,10 +168,34 @@ header {
   gap: 1.75rem;
 }
 
+#pages-container i {
+  font-size: 2rem;
+  color: var(--dark-secondary);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(110%);
+}
+
 #pages-container button {
   font-size: 1.25rem;
   background: transparent;
   cursor: pointer;
+}
+
+#pages-container button:hover {
+  border-bottom: 2px solid #000;
+}
+
+#pages-container button:hover + i {
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 0.3s ease-in-out;
+}
+
+#pages-container button:hover ~ i{
+  opacity: 1;
+  transform: translateX(0%);
+  transition: all 0.3s ease-in-out;
 }
 
 #pages {

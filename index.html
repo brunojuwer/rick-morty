@@ -7,6 +7,7 @@
     <title>Rick & Morty</title>
     <link rel="stylesheet" href="styles.css">
     <link rel="shortcut icon" href="./assets/rick-and-morty.png" type="image/x-icon">
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 
 <body>
@@ -22,10 +23,12 @@
     </header>
     <main id="container"></main>
     <section id="pages-container">
+        <i class="ph-fill ph-arrow-fat-left"></i>
         <button onclick="getPreviousPage()">Anterior</button>
         <span id="pages">
         </span>
         <button onclick="getNextPage()">Próxima</button>
+        <i class="ph-fill ph-arrow-fat-right"></i>
     </section>
     <footer>
         <img src="./assets/rick-and-morty.png" alt="Imagem de Rick e Morty">
