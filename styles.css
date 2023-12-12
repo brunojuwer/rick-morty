@@ -168,7 +168,15 @@ header {
   gap: 1.75rem;
 }
 
-#pages-container i {
+.ph-arrow-fat-left {
+  font-size: 2rem;
+  color: var(--dark-secondary);
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  transform: translateX(-110%);
+}
+
+.ph-arrow-fat-right {
   font-size: 2rem;
   color: var(--dark-secondary);
   opacity: 0;
@@ -186,13 +194,13 @@ header {
   border-bottom: 2px solid #000;
 }
 
-#pages-container button:hover + i {
+#pages-container > button:hover + .ph-arrow-fat-right {
   opacity: 1;
   transform: translateX(0%);
   transition: all 0.3s ease-in-out;
 }
 
-#pages-container button:hover ~ i{
+.move-left-arrow {
   opacity: 1;
   transform: translateX(0%);
   transition: all 0.3s ease-in-out;
