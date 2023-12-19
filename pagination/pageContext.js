@@ -14,17 +14,33 @@ let pageContext = {
       this.currentPage = this.totalPages;
       return;
     } 
-    const indexPrev = this.previousPage.indexOf("=");
-    const numberOfNextPage = Number(this.previousPage.slice(indexPrev + 1));
-    this.currentPage = numberOfNextPage + 1
+
+    const numberOfNextPage = Number(extractPageNumber(this.previousPage));
+    this.currentPage = numberOfNextPage + 1;
   }
 }
 
-function changePageContextData(total, previous, next, url) {
+function extractPageNumber(url) {
+    const pageRegex = /page=(\d+)/;
+    const match = url.match(pageRegex);
+    if(match) {
+      return match[1];
+    }
+}
+
+function changePageContextData(total, previous, next) {
   pageContext.totalPages = total;
   pageContext.previousPage = previous;
   pageContext.nextPage = next;
   pageContext.setCurrentPage();
+
+  if(pageContext.nextPage) {
+    pageContext.lastUrl = pageContext.nextPage 
+  } else {
+    pageContext.lastUrl = pageContext.previousPage
+  }
+
+
 }
 
 function changePagesToShow() {

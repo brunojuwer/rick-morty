@@ -63,7 +63,6 @@ async function fetchCharactersByPage(url){
       response.data.info.pages,
       response.data.info.prev,
       response.data.info.next,
-      url
     );
     changePagesToShow();
     addNumberPages();
