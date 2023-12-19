@@ -56,6 +56,7 @@ async function fetchLastSeenEpisode(episodes) {
 
 async function fetchCharactersByPage(url){
   try {
+    container.innerHTML = '<div class="loader"></div>';
     const response = await axios.get(url);
     const characters = response.data.results;
 
@@ -81,7 +82,6 @@ async function fetchCharactersByPage(url){
 fetchCharactersByPage(charactersURL);
 
 function getCharactersByName(e) {
-  container.innerHTML = '<div class="loader"></div>';
   const name = e.target.value;
   fetchCharactersByPage(`https://rickandmortyapi.com/api/character/?name=${name}`);
 }
