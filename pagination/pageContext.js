@@ -1,4 +1,5 @@
 let pageContext = {
+  lastUrl: "",
   currentPage: 1,
   totalPages: 0,
   previousPage: null,
@@ -14,13 +15,12 @@ let pageContext = {
       return;
     } 
     const indexPrev = this.previousPage.indexOf("=");
-    const numberOfNextPage = Number(this.previousPage.slice(indexPrev +1));
-
+    const numberOfNextPage = Number(this.previousPage.slice(indexPrev + 1));
     this.currentPage = numberOfNextPage + 1
   }
 }
 
-function changePageContextData(total, previous, next) {
+function changePageContextData(total, previous, next, url) {
   pageContext.totalPages = total;
   pageContext.previousPage = previous;
   pageContext.nextPage = next;
