@@ -25,5 +25,10 @@ function addNumberPages(){
 
 function getSpecificPage(e) {
   const page = e.target.value;
-  fetchCharactersByPage(`https://rickandmortyapi.com/api/character/?page=${page}`);
+  if(pageContext.lastUrl.includes("page")) {
+    const lastPage = extractPageNumber(pageContext.lastUrl);
+    const urlToGet = pageContext.lastUrl.replace(lastPage, page);
+    fetchCharactersByPage(urlToGet)
+    return;
+  }
 }

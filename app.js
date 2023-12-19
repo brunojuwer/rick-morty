@@ -56,45 +56,37 @@ async function fetchLastSeenEpisode(episodes) {
 
 async function fetchCharactersByPage(url){
   try {
+    container.innerHTML = '<div class="loader"></div>';
     const response = await axios.get(url);
     const characters = response.data.results;
 
     changePageContextData(
-      response.data.info.pages, 
-      response.data.info.prev, 
-      response.data.info.next
+      response.data.info.pages,
+      response.data.info.prev,
+      response.data.info.next,
     );
-    changePagesToShow()
-    addNumberPages()
+    changePagesToShow();
+    addNumberPages();
     
+      console.log(pageContext);
+
     container.innerHTML = ""
     characters.forEach( async ({name, status, location, image, episode, species}) => {
       const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
       container.innerHTML += mountCard(image, name, status, species, location, episodeName);
     });
   } catch(error) {
-    console.log(error);
     alert("Não foi possível buscar personagens");
   }
 }
 fetchCharactersByPage(charactersURL);
 
-async function getCharactersByName(name) {
-  return await axios.get(`https://rickandmortyapi.com/api/character/?name=${name}`);
+function getCharactersByName(e) {
+  const name = e.target.value;
+  fetchCharactersByPage(`https://rickandmortyapi.com/api/character/?name=${name}`);
 }
 
-filter.addEventListener('keyup', async e => {
-  container.innerHTML = '<div class="loader"></div>';
-  const filteredCharacters = (await getCharactersByName(e.target.value)).data.results;
-// TODO: erro se não achou nome
-  setTimeout(()=> {
-    container.innerHTML = '';
-    filteredCharacters.forEach( async ({name, status, location, image, episode, species}) => {
-      const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
-      container.innerHTML += mountCard(image, name, status, species, location, episodeName);
-    });
-  }, 300);
-}); 
+filter.addEventListener('keyup', e => getCharactersByName(e)); 
 
 async function getDataCount(data) {
   const res = await apiDataLoader()
@@ -106,4 +98,4 @@ async function printApiEnpointsInfoAmount() {
   locationsCountElement.textContent = await getDataCount('locations');
   episodesCountElement.textContent = await getDataCount('episodes');
 }
-printApiEnpointsInfoAmount()
+printApiEnpointsInfoAmount();

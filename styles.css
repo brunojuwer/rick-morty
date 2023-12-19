@@ -55,6 +55,7 @@ header {
 }
 
 #filter {
+  background-color: var(--gray-100);
   width: 92%;
   font-size: 1.75rem;
 }
@@ -73,6 +74,7 @@ header {
 
 #container { 
   width: 100%;
+  max-width: 1200px;
   margin: 2rem auto;
   border-radius: 10px;
   padding: 2rem;
