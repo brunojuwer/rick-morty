@@ -69,10 +69,17 @@ async function fetchCharactersByPage(url){
     changePagesToShow();
     addNumberPages();
     
-    container.innerHTML = ""
+    container.innerHTML = "";
+    let = counter = 1
     characters.forEach( async ({name, status, location, image, episode, species}) => {
       const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
-      container.innerHTML += mountCard(image, name, status, species, location, episodeName);
+      if(counter % 2 === 0 && counter !== characters.length) {
+        container.innerHTML += mountCard(image, name, status, species, location, episodeName);
+        container.innerHTML += `<div class="separator"></div>`;
+      } else {
+        container.innerHTML += mountCard(image, name, status, species, location, episodeName);
+      }
+      counter++;
     });
   } catch(error) {
     renderError("Não foi possível encontrar os personagens!");
