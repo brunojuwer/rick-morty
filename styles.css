@@ -189,13 +189,14 @@ header {
   transform: translateX(110%);
 }
 
-#pages-container button {
+#pages-container button.arrow-page-button {
   font-size: 1.25rem;
-  background: transparent;
+  background-color: transparent;
   cursor: pointer;
+  border-bottom: 2px solid transparent;
 }
 
-#pages-container button:hover {
+#pages-container button.arrow-page-button:hover {
   border-bottom: 2px solid #000;
 }
 
@@ -216,8 +217,23 @@ header {
   gap: 0.875rem;
 }
 
+.button-page {
+  background-color: var(--blue-primary);
+  width: 40px;
+  height: 40px;
+  border-radius: 5px;
+  color: var(--gray-100);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: ease 200ms transform;
+}
+
+.button-page:hover {
+  transform: translateY(-10%);
+}
+
 .current-page {
-  border-bottom: var(--blue-primary) solid 2px;
+  opacity: 0.6;
 }
 
 footer img {
