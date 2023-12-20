@@ -97,6 +97,7 @@ filter.addEventListener('keyup', e => {
     changeSearchIcon(e.target.nextElementSibling, "./assets/close.svg")
     e.target.nextElementSibling.style.cursor = "pointer"
     e.target.nextElementSibling.addEventListener('click', () => {
+      e.target.value = "";
       location.reload();
     })
     return;
