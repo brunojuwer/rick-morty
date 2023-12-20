@@ -68,15 +68,13 @@ async function fetchCharactersByPage(url){
     changePagesToShow();
     addNumberPages();
     
-      console.log(pageContext);
-
     container.innerHTML = ""
     characters.forEach( async ({name, status, location, image, episode, species}) => {
       const episodeName = (await fetchLastSeenEpisode(episode)).data.name;
       container.innerHTML += mountCard(image, name, status, species, location, episodeName);
     });
   } catch(error) {
-    alert("Não foi possível buscar personagens");
+    renderError("Não foi possível encontrar os personagens!");
   }
 }
 fetchCharactersByPage(charactersURL);
@@ -86,7 +84,9 @@ function getCharactersByName(e) {
   fetchCharactersByPage(`https://rickandmortyapi.com/api/character/?name=${name}`);
 }
 
-filter.addEventListener('keyup', e => getCharactersByName(e)); 
+filter.addEventListener('keyup', e => {
+  getCharactersByName(e)
+}); 
 
 async function getDataCount(data) {
   const res = await apiDataLoader()

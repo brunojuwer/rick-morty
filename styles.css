@@ -6,6 +6,7 @@
   
   --green-primary: #40c762;
   --red-primary: #ed1543;
+  --red-secondary: #8a152e;
   --blue-primary: #28a0dd;
 
   --gray-100: #F9F9FC;
@@ -247,4 +248,17 @@ footer div {
   text-align: center;
   margin-top: 3rem;
   color: var(--gray-300);
+}
+
+#errorContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: var(--red-primary);
+  font-weight: 700;
+  font-size: 1.875rem;
+}
+
+.ph-smiley-sad {
+  font-size: 3rem;
 }
