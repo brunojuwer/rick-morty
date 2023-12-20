@@ -60,6 +60,7 @@ async function fetchCharactersByPage(url){
     const response = await axios.get(url);
     const characters = response.data.results;
 
+    document.getElementById("pages-container").style.display = "flex"
     changePageContextData(
       response.data.info.pages,
       response.data.info.prev,
@@ -75,6 +76,7 @@ async function fetchCharactersByPage(url){
     });
   } catch(error) {
     renderError("Não foi possível encontrar os personagens!");
+    document.getElementById("pages-container").style.display = "none"
   }
 }
 fetchCharactersByPage(charactersURL);
@@ -84,8 +86,22 @@ function getCharactersByName(e) {
   fetchCharactersByPage(`https://rickandmortyapi.com/api/character/?name=${name}`);
 }
 
+function changeSearchIcon(element, path) {
+  element.setAttribute("src", path);
+}
+
 filter.addEventListener('keyup', e => {
   getCharactersByName(e)
+
+  if(e.target.value) {
+    changeSearchIcon(e.target.nextElementSibling, "./assets/close.svg")
+    e.target.nextElementSibling.style.cursor = "pointer"
+    e.target.nextElementSibling.addEventListener('click', () => {
+      location.reload();
+    })
+    return;
+  } 
+  changeSearchIcon(e.target.nextElementSibling, "./assets/search.svg")
 }); 
 
 async function getDataCount(data) {

@@ -46,6 +46,8 @@ header {
 }
 
 .filter-container {
+  display: flex;
+  justify-content: space-between;
   background-color: var(--gray-100);
   margin-top: 2rem;
   border: var(--gray-200) 2px solid;
