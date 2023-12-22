@@ -151,6 +151,7 @@ header {
 }
 
 .loader {
+  grid-column: span 2;
   border: 6px solid rgba(0, 0, 0, 0.1);
   border-top: 6px solid #3498db;
   border-radius: 50%;
@@ -221,6 +222,7 @@ header {
 
 .button-page {
   background-color: var(--blue-primary);
+  opacity: 0.6;
   width: 40px;
   height: 40px;
   border-radius: 5px;
@@ -235,7 +237,7 @@ header {
 }
 
 .current-page {
-  opacity: 0.6;
+  opacity: 1;
 }
 
 footer img {

@@ -20,14 +20,6 @@ async function apiDataLoader(page = 1) {
   }
 }
 
-filter.addEventListener('focus', () => {
-  filterContainer.classList.add('focused');
-}) 
-
-filter.addEventListener('blur', () => {
-  filterContainer.classList.remove('focused');
-}) 
-
 function mountCard(image, name, status, species, location, episode) {
   return `
   <article class="card">
@@ -60,7 +52,6 @@ async function fetchCharactersByPage(url){
     const response = await axios.get(url);
     const characters = response.data.results;
 
-    document.getElementById("pages-container").style.display = "flex"
     changePageContextData(
       response.data.info.pages,
       response.data.info.prev,
@@ -97,20 +88,7 @@ function changeSearchIcon(element, path) {
   element.setAttribute("src", path);
 }
 
-filter.addEventListener('keyup', e => {
-  getCharactersByName(e)
-
-  if(e.target.value) {
-    changeSearchIcon(e.target.nextElementSibling, "./assets/close.svg")
-    e.target.nextElementSibling.style.cursor = "pointer"
-    e.target.nextElementSibling.addEventListener('click', () => {
-      e.target.value = "";
-      location.reload();
-    })
-    return;
-  } 
-  changeSearchIcon(e.target.nextElementSibling, "./assets/search.svg")
-}); 
+setFilterListener(getCharactersByName, changeSearchIcon);
 
 async function getDataCount(data) {
   const res = await apiDataLoader()
