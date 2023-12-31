@@ -32,6 +32,10 @@ header {
   padding: 1rem;
 }
 
+svg.top-icon {
+ cursor: pointer;
+}
+
 #input-container {
   max-width: 900px;
   width: 100%;
