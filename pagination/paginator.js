@@ -1,12 +1,14 @@
 function getPreviousPage(){
   if(pageContext.previousPage) {
     fetchCharactersByPage(pageContext.previousPage);
+    window.scrollTo(0, 0);
   }
 }
 
 function getNextPage(){
   if(pageContext.nextPage) {
     fetchCharactersByPage(pageContext.nextPage);
+    window.scrollTo(0, 0);
   }
 }
 
@@ -28,7 +30,8 @@ function getSpecificPage(e) {
   if(pageContext.lastUrl.includes("page")) {
     const lastPage = extractPageNumber(pageContext.lastUrl);
     const urlToGet = pageContext.lastUrl.replace(lastPage, page);
-    fetchCharactersByPage(urlToGet)
+    fetchCharactersByPage(urlToGet);
+    window.scrollTo(0, 0);
     return;
   }
 }
