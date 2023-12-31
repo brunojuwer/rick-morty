@@ -39,8 +39,7 @@ function changePageContextData(total, previous, next) {
   } else {
     pageContext.lastUrl = pageContext.previousPage
   }
-
-
+  document.getElementById("pages-container").style.display = "flex";
 }
 
 function changePagesToShow() {

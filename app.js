@@ -74,7 +74,7 @@ async function fetchCharactersByPage(url){
     });
   } catch(error) {
     renderError("Não foi possível encontrar os personagens!");
-    document.getElementById("pages-container").style.display = "none"
+    document.getElementById("pages-container").style.display = "none";
   }
 }
 fetchCharactersByPage(charactersURL);
